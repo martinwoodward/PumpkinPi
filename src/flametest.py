@@ -15,8 +15,9 @@ except ImportError:
 import unicornhat as unicorn
 
 def flame(hue, duration):
+    print("flame: ", hue)
     sleepTime = 0.05
-    for i in range(0, (duration/sleepTime)):
+    for i in range(0, int(duration/sleepTime)):
         rand_mat = numpy.random.rand(width,height)
         for y in range(height):
             for x in range(width):
@@ -38,9 +39,10 @@ unicorn.rotation(0)
 unicorn.brightness(0.5)
 width,height=unicorn.get_shape()
 
-flame(0.0, 5);
-flame(0.2, 5);
-flame(0.5, 5);
-flame(0.8, 5);
+flame(0.0, 2)
+flame(0.1, 2)
+flame(0.2, 2)
+flame(0.4, 2)
+flame(0.8, 2)
 
 
