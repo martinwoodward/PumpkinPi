@@ -1,20 +1,17 @@
 #!/usr/bin/env python
 
-# Quick flame test based on the Unicorn pHat example code:
+# Quick flame color test based on the Unicorn pHat example code:
 # https://github.com/pimoroni/unicorn-hat/blob/master/examples/random_blinky.py
 
 import colorsys
 import time
 from sys import exit
 
-try:
-    import numpy
-except ImportError:
-    exit("This script requires the numpy module\nInstall with: sudo pip install numpy")
-
+import numpy
 import unicornhat as unicorn
 
 def flame(hue, duration):
+    """ Flicker flame effect for specified hue (0-1) and duration (in seconds)"""
     print("flame: ", hue)
     sleepTime = 0.05
     for i in range(0, int(duration/sleepTime)):
@@ -39,10 +36,10 @@ unicorn.rotation(0)
 unicorn.brightness(0.5)
 width,height=unicorn.get_shape()
 
-flame(0.0, 2)
-flame(0.1, 2)
-flame(0.2, 2)
-flame(0.4, 2)
-flame(0.8, 2)
+flame(0.0, 2)   # Red
+flame(0.1, 2)   # Yellow
+flame(0.2, 2)   # Green
+flame(0.4, 2)   # Light Blue
+flame(0.8, 2)   # Purple
 
 
