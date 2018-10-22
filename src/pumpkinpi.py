@@ -62,7 +62,7 @@ def flicker(hue, stop):
             b = int(rgb[2]*255.0)
             unicorn.set_pixel(x, y, r, g, b)
     unicorn.show()    
-    time.sleep(0.5)
+    time.sleep(0.05)
     if stop():
         break
 
@@ -76,11 +76,10 @@ def flash(r, g, b, period, stop):
       for x in range(width):
         if lightsOn:
           unicorn.set_pixel(x,y,r,g,b)
-          lightsOn = False
         else:
           unicorn.set_pixel(x,y,0,0,0)
-          lightsOn = True
     unicorn.show()
+    lightsOn = not lightsOn 
     time.sleep(period)
     if stop():
         break
@@ -95,7 +94,7 @@ while True:
   if buildStatus == BuildStatus.SUCCEEDED:
     # Good build - flicker like a candle
     workerThread = threading.Thread(target=flicker, args=(0.0, lambda: stop_thread))
-  elif buildStatus == BuildStatus.PARTIALLY_SUCCESSFUL
+  elif buildStatus == BuildStatus.PARTIALLY_SUCCESSFUL:
     # Partially successful - still flicker but with a yellow flame
     workerThread = threading.Thread(target=flicker, args=(0.1, lambda: stop_thread))
   else:
@@ -107,7 +106,7 @@ while True:
   time.sleep(REFRESH_INTERVAL)
 
   # Go check the status again
-  buildStatus = buildHue(BADGE_LINK)
+  buildStatus = getBuildStatus(BADGE_LINK)
 
   # Stop the light doing it's thing and repeat
   stop_thread = True
