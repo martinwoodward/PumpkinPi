@@ -12,9 +12,9 @@ from enum import Enum
 import unicornhat as unicorn
 
 # Azure Pipelines Build Badge for the build you want to monitor
-BADGE_LINK = "https://dev.azure.com/martin/FabrikamApps/_apis/build/status/HelloWorld?branchName=master"
-# How often to check (in seconds). Remember - be nice to the server. Once a minute is plenty.
-REFRESH_INTERVAL = 10
+BADGE_LINK = "https://dev.azure.com/martin/calculator/_apis/build/status/martinwoodward.calculator"
+# How often to check (in seconds). Remember - be nice to the server. Once every 5 minutes is plenty.
+REFRESH_INTERVAL = 300
 
 # Configure the unicorn hat
 unicorn.set_layout(unicorn.AUTO)

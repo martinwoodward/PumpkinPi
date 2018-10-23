@@ -20,5 +20,9 @@ You'll need to install the [Unicorn HAT](https://github.com/pimoroni/unicorn-hat
 
 ``\curl -sS https://get.pimoroni.com/unicornhat | bash``
 
+In addition, we'll be using the ``requests`` module in python so after installing the Unicorn HAT software, install the ``requests`` module with the following command
+
+``sudo pip install requests``
+
 
 

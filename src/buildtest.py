@@ -3,7 +3,7 @@
 import requests
 
 # Azure Pipelines Build Badge for the build you want to monitor
-badgeLink = "https://dev.azure.com/martin/FabrikamApps/_apis/build/status/HelloWorld?branchName=master"
+badgeLink = "https://dev.azure.com/martin/calculator/_apis/build/status/martinwoodward.calculator"
 
 r = requests.get(badgeLink)
 
