@@ -26,7 +26,7 @@ class BuildStatus(Enum):
   SUCCEEDED = 1
   PARTIALLY_SUCCESSFUL = 2
   FAILED = 3
-  UNKOWN = 4
+  UNKNOWN = 4
 
 def getBuildStatus(buildBadge):
   """ 
@@ -36,14 +36,14 @@ def getBuildStatus(buildBadge):
   """
   r = requests.get(buildBadge)
   if r.status_code != 200:
-    return BuildStatus.UNKOWN
+    return BuildStatus.UNKNOWN
   if "failed" in r.text:
     return BuildStatus.FAILED
   if "partially" in r.text:
     return BuildStatus.PARTIALLY_SUCCESSFUL
   if "succeeded" in r.text:
     return BuildStatus.SUCCEEDED
-  return BuildStatus.UNKOWN
+  return BuildStatus.UNKNOWN
 
 def flicker(hue, stop):
   """
