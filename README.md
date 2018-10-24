@@ -1,6 +1,10 @@
 # PumpkinPi
 Spooky build status indicator for [Azure Pipelines](https://azure.com/pipelines).
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=13g5_tRSuZg
+" target="_blank"><img src="http://img.youtube.com/vi/13g5_tRSuZg/0.jpg" 
+alt="Pumpkin Pi Video" width="240" height="180" border="0" /></a>
+
 ## Hardware Requirements:
 This project makes use of the following:
  - Pumpkin
@@ -23,6 +27,28 @@ You'll need to install the [Unicorn HAT](https://github.com/pimoroni/unicorn-hat
 In addition, we'll be using the ``requests`` module in python so after installing the Unicorn HAT software, install the ``requests`` module with the following command
 
 ``sudo pip install requests``
+
+Next you want to clone this git repo. I have it at the root of the standard ``pi`` user
+
+``git clone https://github.com/martinwoodward/PumpkinPi.git``
+
+You need to modify the ``~/PumpkinPi/src/pumpkinpi.py`` script to get it to point at your build badge. See [this video](https://youtu.be/13g5_tRSuZg?t=549) on how to [get the build badge](https://youtu.be/13g5_tRSuZg?t=549) image link from Azure Pipelines
+
+Then replace the ``BADGE_LINK`` value URL
+
+```python
+# Azure Pipelines Build Badge for the build you want to monitor
+BADGE_LINK = "https://dev.azure.com/martin/calculator/_apis/build/status/martinwoodward.calculator"
+# How often to check (in seconds). Remember - be nice to the server. Once every 5 minutes is plenty.
+REFRESH_INTERVAL = 300
+```
+
+Finally you can run the script as root
+
+```
+sudo python ~/PumpkinPi/src/pumpkinpi.py &
+```
+
 
 
 
