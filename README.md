@@ -2,8 +2,8 @@
 Spooky build status indicator for [Azure Pipelines](https://azure.com/pipelines).
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=13g5_tRSuZg
-" target="_blank"><img src="http://img.youtube.com/vi/13g5_tRSuZg/0.jpg" 
-alt="Pumpkin Pi Video" width="480" height="360" border="0" /></a>
+" target="_blank"><img src="https://img.youtube.com/vi/13g5_tRSuZg/sddefault.jpg" 
+alt="Pumpkin Pi Video" width="640" height="480" border="0" /></a>
 
 ## Hardware Requirements:
 This project makes use of the following:
