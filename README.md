@@ -1,5 +1,5 @@
 # PumpkinPi
-Spooky build status indicator for [Azure Pipelines](https://azure.com/pipelines).
+Spooky build status indicator for [Azure Pipelines](https://azure.com/pipelines).  TODO
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=13g5_tRSuZg
 " target="_blank"><img src="https://img.youtube.com/vi/13g5_tRSuZg/sddefault.jpg" 
