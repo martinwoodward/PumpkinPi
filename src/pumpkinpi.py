@@ -11,10 +11,11 @@ from enum import Enum
 
 import unicornhat as unicorn
 
-# Build Badge for the build you want to monitor
-BADGE_LINK = "https://github.com/martinwoodward/calculator/workflows/CI/badge.svg?branch=main"
-# How often to check (in seconds). Remember - be nice to the server. Once every 5 minutes is plenty.
-REFRESH_INTERVAL = 300
+# Load settings (see local_settings.sample)
+try:
+    from local_settings import *
+except ImportError:
+    pass
 
 # Configure the unicorn hat
 unicorn.set_layout(unicorn.AUTO)
