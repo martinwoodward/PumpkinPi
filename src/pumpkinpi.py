@@ -11,8 +11,8 @@ from enum import Enum
 
 import unicornhat as unicorn
 
-# Azure Pipelines Build Badge for the build you want to monitor
-BADGE_LINK = "https://dev.azure.com/martin/calculator/_apis/build/status/martinwoodward.calculator"
+# Build Badge for the build you want to monitor
+BADGE_LINK = "https://github.com/martinwoodward/calculator/workflows/CI/badge.svg?branch=main"
 # How often to check (in seconds). Remember - be nice to the server. Once every 5 minutes is plenty.
 REFRESH_INTERVAL = 300
 
@@ -30,18 +30,22 @@ class BuildStatus(Enum):
 
 def getBuildStatus(buildBadge):
   """ 
-    This is _very_ hacky as there are proper REST API's for Azure Pipelines, but
-    quickly parse the SVG returned by the build badge looking for a Failed or Partially
-    Successful output or return green (assuming a good build).
+    Quickly parse the SVG returned by the build badge looking for a Failed or Partially
+    Successful output or return green (assuming a good build). Note that different build
+    systems use different text for the various states.
   """
   r = requests.get(buildBadge)
   if r.status_code != 200:
     return BuildStatus.UNKNOWN
+  if "failing" in r.text:
+    return BuildStatus.FAILED
   if "failed" in r.text:
     return BuildStatus.FAILED
   if "partially" in r.text:
     return BuildStatus.PARTIALLY_SUCCESSFUL
   if "succeeded" in r.text:
+    return BuildStatus.SUCCEEDED
+  if "passing" in r.text:
     return BuildStatus.SUCCEEDED
   return BuildStatus.UNKNOWN
 

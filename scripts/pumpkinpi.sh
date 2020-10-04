@@ -6,8 +6,8 @@
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Spooky Azure Pipelines build status monitor
-# Description:       Spooky Azure Pipelines build status monitor using a RPI and RGB LED matrix
+# Short-Description: Spooky build status monitor
+# Description:       Spooky build status monitor using a RPI and RGB LED matrix
 ### END INIT INFO
 
 # Fancy init.d script for python projects requiring GPIO access from Stephen C Phillips

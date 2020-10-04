@@ -2,8 +2,8 @@
 
 import requests
 
-# Azure Pipelines Build Badge for the build you want to monitor
-badgeLink = "https://dev.azure.com/martin/calculator/_apis/build/status/martinwoodward.calculator"
+# Build Badge for the build you want to monitor
+badgeLink = "https://github.com/martinwoodward/calculator/workflows/CI/badge.svg?branch=main"
 
 r = requests.get(badgeLink)
 
