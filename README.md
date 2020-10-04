@@ -39,9 +39,11 @@ Next you want to clone this git repo. I have it at the root of the standard ``pi
 
 ``git clone https://github.com/martinwoodward/PumpkinPi.git``
 
-You need to modify the ``~/PumpkinPi/src/pumpkinpi.py`` script to get it to point at your build badge.
+You need to modify the settings to point at your build badge. First of all copy the sample settings provided in the repo:
 
-Then replace the ``BADGE_LINK`` value URL
+``cp ~/PumpkinPi/src/local_settings.sample ~/PumpkinPi/src/local_settings.py``
+
+Then edit the ``BADGE_LINK`` variable and point at the URL of your Build badge.
 
 ```python
 # Build Badge for the build you want to monitor
