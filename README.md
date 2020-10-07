@@ -1,9 +1,7 @@
 # PumpkinPi
 Spooky build status indicator.
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=13g5_tRSuZg
-" target="_blank"><img src="https://img.youtube.com/vi/13g5_tRSuZg/sddefault.jpg" 
-alt="Pumpkin Pi Video" width="640" height="480" border="0" /></a>
+<img src="images/pumpkinpi-render-top.png" alt="Pumpkin Pi" width="640" border="0" />
 
 ## Hardware Requirements:
 This project makes use of the following:
