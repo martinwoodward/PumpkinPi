@@ -5,7 +5,7 @@ Spooky build status indicator.
 
 ## Hardware Requirements:
 This project makes use of the following:
- - Pumpkin - Carve a real one or you can always 3D print one
+ - Pumpkin - Carve a real one or you can always [3D print one](#3d-printed-pumpkin)
  - Raspberry Pi Zero WH  ([UK](https://amzn.to/33rmXEc), [US](https://amzn.to/3lcQLul))
  - Pimori Unicorn pHat  ([UK](https://amzn.to/3l8rPnR), [US](https://amzn.to/30wEWaG))
  - Micro SD Card  ([UK](https://amzn.to/2SoRagP), [US](https://amzn.to/2GeMWWT))
@@ -56,7 +56,14 @@ Finally you can run the script as root
 sudo python ~/PumpkinPi/src/pumpkinpi.py &
 ```
 
-Once you are happy everything is running how you want, don't forget you can run the script at boot time. The easiest way to do this is to use crontab. See this [cool video from Estefannie over on the Raspberry Pi blog](https://www.raspberrypi.org/blog/how-to-run-a-script-at-start-up-on-a-raspberry-pi-using-crontab/) to learn more. 
+Once you are happy everything is running how you want, don't forget you can run the script at boot time. The easiest way to do this is to use crontab. See this [cool video from Estefannie over on the Raspberry Pi blog](https://www.raspberrypi.org/blog/how-to-run-a-script-at-start-up-on-a-raspberry-pi-using-crontab/) to learn more.  But basically do ``sudo crontab -e`` then add the following:
+
+```
+@reboot /bin/sleep 10 ; /usr/bin/python /home/pi/PumpkinPi/src/pumpkinpi.py &
+
+```
+
+Note that we are pausing for 10 seconds before running the python script. This is to allow the network to come up. We could make the python script more resilient to network outages and/or start up the script using [systemd](https://www.raspberrypi.org/documentation/linux/usage/systemd.md).
 
 
 
