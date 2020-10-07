@@ -38,7 +38,7 @@ def getBuildStatus(buildBadge):
   r = requests.get(buildBadge)
   if r.status_code != 200:
     return BuildStatus.UNKNOWN
-  badge = r.text.lower
+  badge = r.text.lower()
   if "fail" in badge: # failing and failed
     return BuildStatus.FAILED
   if "partially" in badge:
