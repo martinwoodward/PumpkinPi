@@ -12,7 +12,7 @@ This project makes use of the following:
  - USB power - I used the official Raspberry Pi Charger ([UK](https://amzn.to/33qvreN), [US](https://amzn.to/36yKkh4)) but you can also power with a USB battery pack.
 
  ### 3d Printed Pumpkin
- For the 3d printed pumpkin case, you will need:
+ For the [3d printed pumpkin case](stl/), you will need:
   - Glow in the Dark PLA Filament for body  ([UK](https://amzn.to/2SmQzwj), [US]())
   - Green PLA Filament for top  ([UK](https://amzn.to/2GeMlo7), [US](https://amzn.to/30vuAHX))
   - Adafruit Panel Mount Extension USB Cable - Micro B Male to Micro B Female [ADA3258] ([UK](https://amzn.to/3irYgf9), [US](https://amzn.to/34pR51V))
