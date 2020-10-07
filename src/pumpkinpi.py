@@ -38,15 +38,14 @@ def getBuildStatus(buildBadge):
   r = requests.get(buildBadge)
   if r.status_code != 200:
     return BuildStatus.UNKNOWN
-  if "failing" in r.text:
+  badge = r.text.lower
+  if "fail" in badge: # failing and failed
     return BuildStatus.FAILED
-  if "failed" in r.text:
-    return BuildStatus.FAILED
-  if "partially" in r.text:
+  if "partially" in badge:
     return BuildStatus.PARTIALLY_SUCCESSFUL
-  if "succeeded" in r.text:
+  if "succeeded" in badge:
     return BuildStatus.SUCCEEDED
-  if "passing" in r.text:
+  if "pass" in badge: # passing and passed
     return BuildStatus.SUCCEEDED
   return BuildStatus.UNKNOWN
 
@@ -59,7 +58,7 @@ def flicker(hue, stop):
     for y in range(height):
         for x in range(width):
             h = hue + (0.1 * rand_mat[x, y])
-            s = 0.8
+            s = 1
             v = rand_mat[x, y]
             rgb = colorsys.hsv_to_rgb(h, s, v)
             r = int(rgb[0]*255.0)
