@@ -1,7 +1,7 @@
 # PumpkinPi
 Spooky build status indicator.
 
-<img src="images/pumpkinpi-render-top.png" alt="Pumpkin Pi" width="640" border="0" />
+<img src="images/pumpkinpi-title.png" alt="Pumpkin Pi" width="640" border="0" />
 
 ## Hardware Requirements:
 This project makes use of the following:
