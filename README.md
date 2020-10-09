@@ -21,9 +21,11 @@ This project makes use of the following:
 
 When ordering online, while Amazon ([US](https://amzn.to/2CUGild)) and Amazon ([UK](https://amzn.to/2PbHDtz)) are always handy places (especially if you are a Prime member) I also highly recommend [AdaFruit](https://www.adafruit.com/) for electronics purchases in the US and [PiHut](https://thepihut.com/) in the UK. They basically should just park a truck at my house and take all my money.
 
+<img src="images/pumpkin-parts.jpg" alt="Pumpkin Pi" width="640" border="0" />
+
 ## Getting Started
 
-Format the micro SD Card and [install Praspberry Pi OS Lite](https://www.raspberrypi.org/downloads/raspberry-pi-os/). If installing onto a Pi Zero you might not have the keyboard and HDMI adopters lying around so you probably want to do a [headless install](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md), configuring SSH and WiFi by dropping an `ssh` file and a `wpa_supplicant.conf` file onto the root of the SD card after copying over the Raspbian files.
+Format the micro SD Card and [install Raspberry Pi OS Lite](https://www.raspberrypi.org/downloads/raspberry-pi-os/). If installing onto a Pi Zero you might not have the keyboard and HDMI adopters lying around so you probably want to do a [headless install](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md), configuring SSH and WiFi by dropping an `ssh` file and a `wpa_supplicant.conf` file onto the root of the SD card after copying over the Raspbian files.
 
 You'll need to install the [Unicorn HAT](https://github.com/pimoroni/unicorn-hat) software but they have a cool one-line installer that takes care of all the dependencies including Python and Git.
 
@@ -64,6 +66,9 @@ Once you are happy everything is running how you want, don't forget you can run 
 ```
 
 Note that we are pausing for 10 seconds before running the python script. This is to allow the network to come up. We could make the python script more resilient to network outages and/or start up the script using [systemd](https://www.raspberrypi.org/documentation/linux/usage/systemd.md).
+
+<img src="images/pumpkin-orange.gif" alt="Pumpkin Pi" width="640" border="0" />
+
 
 
 
