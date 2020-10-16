@@ -7,7 +7,7 @@ Spooky build status indicator.
 This project makes use of the following:
  - Pumpkin - Carve a real one or you can always [3D print one](#3d-printed-pumpkin)
  - Raspberry Pi Zero WH  ([UK](https://amzn.to/33rmXEc), [US](https://amzn.to/3lcQLul))
- - Pimori Unicorn pHat  ([UK](https://amzn.to/3l8rPnR), [US](https://amzn.to/30wEWaG))
+ - Pimoroni Unicorn pHat  ([UK](https://amzn.to/3l8rPnR), [US](https://amzn.to/30wEWaG))
  - Micro SD Card  ([UK](https://amzn.to/2SoRagP), [US](https://amzn.to/2GeMWWT))
  - USB power - I used the official Raspberry Pi Charger ([UK](https://amzn.to/33qvreN), [US](https://amzn.to/36yKkh4)) but you can also power with a USB battery pack.
 
@@ -17,7 +17,7 @@ This project makes use of the following:
   - Green PLA Filament for top  ([UK](https://amzn.to/2GeMlo7), [US](https://amzn.to/30vuAHX))
   - Adafruit Panel Mount Extension USB Cable - Micro B Male to Micro B Female [ADA3258] ([UK](https://amzn.to/3irYgf9), [US](https://amzn.to/34pR51V))
   - 4 x M2.5 threaded brass inserts ([UK](https://amzn.to/3ixudCK), [US](https://amzn.to/33rnYw0))
-  - 4 x M2.5 male PCB standoffs & screws - keep a kit of thise handy if you don't have some. ([UK](https://amzn.to/3cYGkYE), [US](https://amzn.to/3l8VDk8))
+  - 4 x M2.5 male PCB standoffs & screws - keep a kit of these handy if you don't have some. ([UK](https://amzn.to/3cYGkYE), [US](https://amzn.to/3l8VDk8))
 
 When ordering online, while Amazon ([US](https://amzn.to/2CUGild)) and Amazon ([UK](https://amzn.to/2PbHDtz)) are always handy places (especially if you are a Prime member) I also highly recommend [AdaFruit](https://www.adafruit.com/) for electronics purchases in the US and [PiHut](https://thepihut.com/) in the UK. They basically should just park a truck at my house and take all my money.
 
@@ -25,7 +25,7 @@ When ordering online, while Amazon ([US](https://amzn.to/2CUGild)) and Amazon ([
 
 ## Getting Started
 
-Format the micro SD Card and [install Raspberry Pi OS Lite](https://www.raspberrypi.org/downloads/raspberry-pi-os/). If installing onto a Pi Zero you might not have the keyboard and HDMI adopters lying around so you probably want to do a [headless install](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md), configuring SSH and WiFi by dropping an `ssh` file and a `wpa_supplicant.conf` file onto the root of the SD card after copying over the Raspbian files.
+Format the micro SD Card and [install Raspberry Pi OS Lite](https://www.raspberrypi.org/downloads/raspberry-pi-os/). If installing onto a Pi Zero you might not have the keyboard and HDMI adapters lying around so you probably want to do a [headless install](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md), configuring SSH and WiFi by dropping an `ssh` file and a `wpa_supplicant.conf` file onto the root of the SD card after copying over the Raspbian files.
 
 You'll need to install the [Unicorn HAT](https://github.com/pimoroni/unicorn-hat) software but they have a cool one-line installer that takes care of all the dependencies including Python and Git.
 
