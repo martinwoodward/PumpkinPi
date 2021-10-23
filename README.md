@@ -7,7 +7,7 @@ Spooky build status indicator.
 This project makes use of the following:
  - Pumpkin - Carve a real one or you can always [3D print one](#3d-printed-pumpkin)
  - Raspberry Pi Zero WH  ([UK](https://amzn.to/33rmXEc), [US](https://amzn.to/3lcQLul))
- - Pimoroni Unicorn pHat  ([UK](https://amzn.to/3l8rPnR), [US](https://amzn.to/30wEWaG))
+ - Pimoroni Unicorn pHat  ([UK](https://amzn.to/3l8rPnR), [US](https://amzn.to/30wEWaG)). Note discountinued now so you might want to try the [Unicorn HAT Mini instead](https://shop.pimoroni.com/products/unicorn-hat-mini)
  - Micro SD Card  ([UK](https://amzn.to/2SoRagP), [US](https://amzn.to/2GeMWWT))
  - USB power - I used the official Raspberry Pi Charger ([UK](https://amzn.to/33qvreN), [US](https://amzn.to/36yKkh4)) but you can also power with a USB battery pack.
 
