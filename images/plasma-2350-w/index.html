@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plasma PumpkinPi model previews</title>
+<style>
+  body { margin: 0 auto; padding: 2rem; max-width: 1400px; background: #101923;
+    color: #edf3f7; font: 17px/1.6 system-ui, sans-serif; }
+  h1, h2 { line-height: 1.2; }
+  a { color: #70ded0; }
+  img { width: 100%; height: auto; display: block; border-radius: 12px; }
+  section { margin: 2.5rem 0; }
+  .notice { padding: 1rem; border-left: 4px solid #ff9f1c; background: #23303c; }
+</style>
+<h1>Plasma 2350 W PumpkinPi</h1>
+<p>Actual STL-derived comparison renders, not concept illustrations.
+  Original Pi Zero models are preserved.</p>
+<p><a href="../../stl/plasma-2350-w/plasma2350-holder.stl">Plasma holder STL</a> &middot;
+  <a href="../../stl/plasma-2350-w/pumpkin-body.stl">Plasma body STL</a> &middot;
+  <a href="../../stl/plasma-2350-w/usb-c-fit-coupon.stl">USB-C fit coupon STL</a></p>
+<p class="notice"><strong>USB-C fit is provisional:</strong> the cable illustration
+  omits mounting pitch and cutout dimensions. Print the coupon before the body.
+  The rectangular opening uses a short bridge, with no triangular vent above it.</p>
+<section id="octocat">
+  <h2>Smooth, evenly thinned Octocat</h2>
+  <img src="logo-comparison.png" width="1680" height="1200"
+    alt="Rear Octocat views before and after smoothing, with sections showing the thick upper wedge replaced by a consistent thin wall">
+  <p>The Plasma body has a 3.2 mm front-to-back logo wall, following the
+    unchanged sculpted front. The ridged back and thick upper wedge are removed.
+    Measured depth is 3.17&ndash;3.26 mm across 2,266 samples, excluding edge bevels.
+    No new overhangs above 45 degrees are introduced.</p>
+</section>
+<section>
+  <h2>Plasma 2350 W mounting insert</h2>
+  <img src="holder-comparison.png" width="1680" height="960"
+    alt="Four Pi Zero bosses replaced with two diagonal M2 bosses on the unchanged snap-fit plate">
+  <p>60 x 22 mm PCB, two diagonal mounting holes and 6 mm underside clearance.
+    The translucent board is a reference envelope only.</p>
+</section>
+<section>
+  <h2>USB-C panel opening</h2>
+  <img src="usb-comparison.png" width="1680" height="960"
+    alt="Dimensioned rear panel cross-sections comparing the micro-B and rectangular USB-C opening">
+  <p>11.6 x 6.8 mm rectangular aperture with a flat bridged ceiling; nominal 19 mm screw spacing.
+    The body retains its original base and stalk interfaces.</p>
+</section>
+<p><a href="../../stl/plasma-2350-w/README.md">Printing and assembly notes</a> &middot;
+  <a href="../../docs/plasma-copilot-plan.md">Credit-lamp implementation plan</a></p>
+</html>

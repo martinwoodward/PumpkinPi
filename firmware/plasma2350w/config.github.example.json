@@ -1,0 +1,34 @@
+{
+  "provider": "github",
+  "profile_id": "personal-configured-budget",
+  "config_generation": 1,
+  "balance_basis": "configured-monthly-credit-budget",
+  "budget_revision": "budget-v1",
+  "device_id": "pumpkin-01",
+  "environment_file": ".env",
+  "ca_file": "certs/github-root.pem",
+  "ntp_host": "pool.ntp.org",
+  "billing_poll_interval_seconds": 300,
+  "startup_demo_timeout_seconds": 30,
+  "source": {
+    "owner_type": "user",
+    "owner": "YOUR_GITHUB_USERNAME",
+    "allowance_microcredits": null,
+    "unlimited": false,
+    "quality": "estimated",
+    "mapping": {
+      "unit_type": "",
+      "product": "",
+      "sku": "",
+      "quantity_field": "grossQuantity"
+    }
+  },
+  "exhaustion_policy": "configured-budget",
+  "color_order": "GRB",
+  "max_brightness": 0.1,
+  "max_led_milliamps": 1500,
+  "idle_ma_per_pixel": 0.5,
+  "channel_ma": 20,
+  "stale_after_seconds": 900,
+  "flicker_seed": 2350
+}

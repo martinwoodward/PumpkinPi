@@ -1,0 +1,133 @@
+{
+  "original_body": {
+    "volume_cm3": 734.439,
+    "bounds_mm": [
+      [
+        -84.8688,
+        -86.1677,
+        0.0
+      ],
+      [
+        85.1566,
+        86.1395,
+        122.6977
+      ]
+    ],
+    "watertight": true,
+    "winding_consistent": true,
+    "components": 1,
+    "triangles": 67258
+  },
+  "models": {
+    "plasma2350-holder": {
+      "volume_cm3": 22.924,
+      "bounds_mm": [
+        [
+          -44.3554,
+          -27.0148,
+          0.0
+        ],
+        [
+          44.6446,
+          26.9852,
+          11.0
+        ]
+      ],
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "triangles": 1396
+    },
+    "pumpkin-body": {
+      "volume_cm3": 707.609,
+      "bounds_mm": [
+        [
+          -84.8688,
+          -86.1677,
+          0.0
+        ],
+        [
+          85.1566,
+          86.1395,
+          122.6977
+        ]
+      ],
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "triangles": 99560
+    },
+    "usb-c-fit-coupon": {
+      "volume_cm3": 1.088,
+      "bounds_mm": [
+        [
+          -17.0,
+          0.0,
+          0.0
+        ],
+        [
+          17.0,
+          19.0,
+          2.0
+        ]
+      ],
+      "watertight": true,
+      "winding_consistent": true,
+      "components": 1,
+      "triangles": 72
+    }
+  },
+  "source_sha256": {
+    "pumpkin-body.stl": "0c9326b98a0b7f43f0017ae53562439faba2297a9e1cb4075f7dcfef5bce9c3b",
+    "pumpkin-pi-holder.stl": "d402526116bc7815070c4cdb728af863dfd8b79f98298b673d21f0ca146e19aa",
+    "pumpkin-plug.stl": "358d2f2740e1463028a7d2e49983b892d31a4b2eed72e0215a97b97c0dd7b361"
+  },
+  "parameters": {
+    "octocat_front_to_back_mm": 3.2,
+    "pcb_mm": [
+      60,
+      22
+    ],
+    "mount_pitch_mm": [
+      55.6,
+      17.6
+    ],
+    "usb_clear_rectangle_mm": [
+      11.6,
+      6.8
+    ],
+    "usb_roof": "flat bridge",
+    "usb_bridge_span_mm": 11.6,
+    "usb_screw_pitch_mm_provisional": 19.0
+  },
+  "body_octocat_wall": {
+    "target_front_to_back_mm": 3.2,
+    "samples": 2266,
+    "min_mm": 3.1705869284327264,
+    "max_mm": 3.2523791247224665,
+    "max_front_surface_change_mm": 6.132772512046358e-07
+  },
+  "body_new_overhangs_over_45": {
+    "triangles": 2,
+    "area_mm2": 23.200000762939453,
+    "allowed_usb_bridge_triangles": 2,
+    "allowed_usb_bridge_area_mm2": 23.200000762939453,
+    "unexpected_triangles": 0,
+    "unexpected_area_mm2": 0.0
+  },
+  "holder_new_overhangs_over_45": {
+    "triangles": 0,
+    "area_mm2": 0.0,
+    "allowed_usb_bridge_triangles": 0,
+    "allowed_usb_bridge_area_mm2": 0.0,
+    "unexpected_triangles": 0,
+    "unexpected_area_mm2": 0.0
+  },
+  "base_symmetric_difference_mm3": 3.0156703313040842e-06,
+  "stalk_seat_symmetric_difference_mm3": 0.0,
+  "holder_snap_rim_symmetric_difference_mm3": 0.0,
+  "holder_body_intersection_mm3": 0.0,
+  "outer_lobe_samples_retained": 18419,
+  "outer_lobe_max_distance_mm": 5.562325947765508e-07,
+  "original_overhang_area_over_45_mm2": 6987.232603154396
+}
