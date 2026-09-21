@@ -28,12 +28,14 @@ MAPPING = {"unit_type": "credit", "product": "copilot", "sku": "ai-credit",
 
 
 def configuration(folder):
+    ca_path = folder / "github-root.pem"
+    ca_path.write_bytes((FIRMWARE / "certs/github-root.pem").read_bytes())
     return {
         "provider": "github", "profile_id": "profile", "config_generation": 1,
         "balance_basis": "configured-budget", "budget_revision": "rev-1",
         "device_id": "pumpkin", "environment_file": str(folder / ".env"),
         "time_floor_file": str(folder / "direct-time.json"),
-        "ca_file": str(FIRMWARE / "certs/github-root.pem"),
+        "ca_file": str(ca_path),
         "exhaustion_policy": "configured-budget", "billing_poll_interval_seconds": 300,
         "source": {"owner_type": "user", "owner": "octo",
                    "allowance_microcredits": 100_000_000,
@@ -286,7 +288,7 @@ class DirectProviderTests(unittest.TestCase):
             self.clock.ticks = tick
             scheduler.tick()
         self.assertTrue(any(any(rgb) for rgb in hardware.frames[-1]))
-        self.assertLessEqual(max(max(rgb) for rgb in hardware.frames[-1]), 4)
+        self.assertLessEqual(max(max(rgb) for rgb in hardware.frames[-1]), 30)
         self.assertEqual(hardware.state, "depleted")
         self.config["exhaustion_policy"] = "none"
         for tick in range(602000, 603000, 33):

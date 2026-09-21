@@ -60,15 +60,27 @@ then stays in a dull purple flicker. Recovery rises to white over one second and
 blends back into the current-balance candle over half a second.
 
 Press button **A** to start the latched animation demo: three flashes, a 15-second
-pause, 10 seconds full, 30 seconds draining, 5 seconds exhausted, then recharge
-and hold full until restart. A blue onboard LED marks simulation. It stops
+pause, 10 seconds full, 30 seconds draining, 5 seconds exhausted, then recharge.
+Run this complete 63-second sequence three times, then hold the
+orange/golden flickering candle for 60 minutes. Thereafter replay the sequence
+once and hold orange for another 60 minutes, repeating until restart. All
+durations use monotonic time; network recovery or another button press does not
+restart the schedule. A blue onboard LED marks simulation. It stops
 network polling and never writes synthetic values into live billing state.
 
-Every boot starts in normal mode. With no fresh valid credit data after 30 seconds,
+Every fully provisioned boot starts in normal mode. With no fresh valid credit data after 30 seconds,
 it starts the same demo automatically. `startup_demo_timeout_seconds` can be
 increased for a slower network. Later outages after a successful startup retain
 normal stale/error handling instead of switching to simulated full credits.
-Invalid local configuration or missing `.env` remains an explicit startup error.
+Missing, unreadable or invalid `config.json` / `.env` reports a secret-free
+`Setup required` error and immediately starts blue-status setup demo without
+creating a network provider or populating live accounting. Invalid config uses
+default power settings (96 RGB-order pixels, 100% requested brightness, modeled 1.5 A
+total cap); valid config with
+invalid environment retains the validated electrical settings. Hardware/code
+and TLS time-floor failures remain fatal. Fill the board's commented `.env` and
+`config.json` setup fields and reset to retry live mode. See the firmware README
+for Windows serial commands and the real-board `verify_demo.py` smoke test.
 
 ## Network and diagnostics
 

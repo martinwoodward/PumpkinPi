@@ -106,18 +106,22 @@ pretending the previous month is current.
 
 Button A is active-low `SW_A` / GPIO12 with a pull-up and 50 ms debounce. Demo
 flashes three times (250 ms on/off), waits 15 s, stays full 10 s, drains over 30 s,
-stays exhausted 5 s including sputter, recharges, then holds full until restart.
+stays exhausted 5 s including sputter, and recharges over 1.5 s. Run three full
+63-second cycles, hold the orange/golden candle for 60 minutes, then repeatedly
+run one complete cycle followed by another 60-minute hold until restart.
 The blue status LED marks simulation. Polling stops; synthetic values do not
 enter the accounting reducer or saved billing state.
 
-Every boot begins in normal mode. After 30 s without fresh valid credit data,
+Every fully provisioned boot begins in normal mode. After 30 s without fresh valid credit data,
 enter the same latched demo. Make the startup timeout configurable. A later
 outage after a successful startup retains live-mode error/stale handling.
-Invalid local configuration is an explicit boot error.
+Missing or invalid local configuration/environment reports a secret-free setup
+error and immediately starts the blue-status demo without network access or
+synthetic billing state. Hardware and TLS time-floor failures remain fatal.
 
 ## Power and physical acceptance
 
-Default to 96 WS2812 RGB pixels, GRB order, 10% brightness and a provisional
+Default to 96 WS2812 RGB pixels, RGB order, 100% requested brightness and a provisional
 1.5 A modeled LED budget. An older 96-pixel strip can demand about 5.76 A at
 full white, beyond the board's published 3 A USB-C limit. All effects, including
 flashes and recharge, pass through the same limiter. An impossible visibility

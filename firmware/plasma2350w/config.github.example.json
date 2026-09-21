@@ -1,4 +1,13 @@
 {
+  "_setup": [
+    "Fill source.owner with your actual GitHub username (or change owner_type).",
+    "Set allowance_microcredits to your approved monthly budget: 1 credit = 1000000.",
+    "Fill mapping.unit_type, product and sku using your actual billing response.",
+    "Do not guess billing units or allowance. Blank values run setup demo only.",
+    "Put Wi-Fi credentials and your GitHub token in the separate .env file.",
+    "Edit these files locally, upload them through mpremote, then reset the board.",
+    "See firmware/plasma2350w/README.md for provisioning and unlimited settings."
+  ],
   "provider": "github",
   "profile_id": "personal-configured-budget",
   "config_generation": 1,
@@ -12,7 +21,7 @@
   "startup_demo_timeout_seconds": 30,
   "source": {
     "owner_type": "user",
-    "owner": "YOUR_GITHUB_USERNAME",
+    "owner": "",
     "allowance_microcredits": null,
     "unlimited": false,
     "quality": "estimated",
@@ -24,8 +33,8 @@
     }
   },
   "exhaustion_policy": "configured-budget",
-  "color_order": "GRB",
-  "max_brightness": 0.1,
+  "color_order": "RGB",
+  "max_brightness": 1.0,
   "max_led_milliamps": 1500,
   "idle_ma_per_pixel": 0.5,
   "channel_ma": 20,

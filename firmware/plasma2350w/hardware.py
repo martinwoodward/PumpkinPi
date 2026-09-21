@@ -2,7 +2,7 @@
 
 
 class PlasmaHardware:
-    def __init__(self, pixels=96, color_order="GRB", strip=None, status_led=None,
+    def __init__(self, pixels=96, color_order="RGB", strip=None, status_led=None,
                  button_a=None):
         self.pixels = pixels
         real_hardware = strip is None
