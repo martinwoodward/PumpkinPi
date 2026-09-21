@@ -33,12 +33,12 @@ class FirmwareTests(unittest.TestCase):
             def __init__(self, *args): created["button"] = args
             def value(self): return 0 if self.pressed else 1
         with patch.dict(sys.modules, {
-                "plasma": types.SimpleNamespace(COLOR_ORDER_GRB="grb", WS2812=Strip),
+                "plasma": types.SimpleNamespace(COLOR_ORDER_RGB="rgb", WS2812=Strip),
                 "pimoroni": types.SimpleNamespace(RGBLED=RGBLED),
                 "machine": types.SimpleNamespace(Pin=Pin)}):
             adapter = hardware.PlasmaHardware()
         self.assertEqual(created["pins"], ("LED_R", "LED_G", "LED_B"))
-        self.assertEqual(created["strip"], (96, "grb"))
+        self.assertEqual(created["strip"], (96, "rgb"))
         self.assertEqual(created["rate"], 60)
         self.assertTrue(adapter.strip.black_at_start)
         self.assertEqual(created["button"], ("SW_A", "in", "pull-up"))
@@ -93,12 +93,67 @@ class FirmwareTests(unittest.TestCase):
             hardware, transport = Hardware(), Transport()
             def tick(self): raise RuntimeError("fatal")
         scheduler = Scheduler()
-        with patch.object(main, "load_config", return_value={}), \
-                patch.object(main, "build", return_value=scheduler):
+        with patch.object(main, "build_startup", return_value=scheduler):
             with self.assertRaises(RuntimeError):
                 main.run()
         self.assertTrue(scheduler.hardware.blacked)
         self.assertTrue(scheduler.transport.closed)
+
+    def test_missing_or_invalid_config_enters_setup_demo_without_network(self):
+        for error in (OSError(2, "missing"), ValueError("private input")):
+            with self.subTest(error=type(error).__name__), \
+                    patch.object(main, "load_config", side_effect=error), \
+                    patch.object(main, "load_environment") as environment, \
+                    patch.object(main, "build") as live, \
+                    patch.object(main, "PlasmaHardware") as hardware, \
+                    patch("builtins.print") as output:
+                scheduler = main.build_startup()
+                scheduler.tick()
+                self.assertEqual(scheduler.demo_reason, "setup required")
+                self.assertIsNone(scheduler.transport)
+                self.assertIsNone(scheduler.controller.reducer.snapshot)
+                self.assertIn("config.json", scheduler.controller.reducer.error)
+                self.assertEqual(scheduler.controller.limiter.max_brightness, 1.0)
+                hardware.assert_called_once_with(96, "RGB")
+                hardware.return_value.status.assert_called_with("demo")
+                self.assertNotIn("private input", str(output.call_args_list))
+                environment.assert_not_called()
+                live.assert_not_called()
+
+    def test_default_brightness_matches_examples_but_keeps_current_cap(self):
+        limiter = main.build_controller({}, {}).limiter
+        self.assertEqual(limiter.max_brightness, 1.0)
+        frame = limiter.apply([(255, 255, 255)] * 96)
+        self.assertGreater(frame[0][0], 25)
+        self.assertLessEqual(limiter.estimate_milliamps(frame), 1500)
+
+    def test_invalid_environment_demo_preserves_validated_power_settings(self):
+        config = {"max_brightness": .05, "max_led_milliamps": 500,
+                  "color_order": "GRB"}
+        with patch.object(main, "load_config", return_value=config), \
+                patch.object(main, "load_environment", side_effect=ValueError("empty")), \
+                patch.object(main, "build") as live, \
+                patch.object(main, "PlasmaHardware") as hardware, \
+                patch("builtins.print"):
+            scheduler = main.build_startup()
+            self.assertEqual(scheduler.demo_reason, "setup required")
+            self.assertEqual(scheduler.controller.limiter.max_brightness, .05)
+            self.assertEqual(scheduler.controller.limiter.max_milliamps, 500)
+            hardware.assert_called_once_with(96, "GRB")
+            live.assert_not_called()
+
+    def test_valid_startup_uses_live_provider_and_does_not_hide_build_failures(self):
+        config, env = {}, {"GITHUB_TOKEN": "fixture"}
+        with patch.object(main, "load_config", return_value=config), \
+                patch.object(main, "load_environment", return_value=env), \
+                patch.object(main, "build") as live, \
+                patch.object(main, "build_setup_demo") as demo:
+            self.assertIs(main.build_startup(), live.return_value)
+            live.assert_called_once_with(config, env)
+            live.side_effect = ValueError("invalid saved TLS time floor")
+            with self.assertRaisesRegex(ValueError, "TLS time floor"):
+                main.build_startup()
+            demo.assert_not_called()
 
     def test_clock_accumulates_wrapped_ticks_without_wall_clock(self):
         class Ticks:

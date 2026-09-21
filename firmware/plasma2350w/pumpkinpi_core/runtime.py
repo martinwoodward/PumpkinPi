@@ -88,9 +88,20 @@ class DisplayController:
             fraction = 0.02
         frame = self.limiter.apply(
             self.renderer.render(fraction, now_mono, sputter=sputter,
-                                 exhausted=confirmed, recharge=recharge,
+                                 exhausted=confirmed,
                                  unlimited=state.get("unlimited", False))
         )
+        if recharge is not None and not confirmed and recharge < 1.5:
+            # Blend already-limited endpoints so high brightness cannot clip
+            # the one-second rise into an early, constant-current plateau.
+            white = self.limiter.apply([(255, 255, 255)] * self.limiter.pixels)
+            if recharge <= 1.0:
+                start = self.limiter.apply([(12, 1, 20)] * self.limiter.pixels)
+                target, mix = white, max(0.0, recharge)
+            else:
+                start, target, mix = white, frame, (recharge - 1.0) / .5
+            frame = [tuple(int(a + (b - a) * mix) for a, b in zip(left, right))
+                     for left, right in zip(start, target)]
         if not any(any(rgb) for rgb in frame):
             raise PowerConfigError("configured brightness/current cannot show the candle safely")
         return frame

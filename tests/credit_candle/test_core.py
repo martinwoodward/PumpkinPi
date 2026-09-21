@@ -167,7 +167,7 @@ class RenderingTests(unittest.TestCase):
                             for rgb in controller.frame(now, .7)))
         frame = controller.frame(now, 2.4)
         self.assertTrue(any(any(rgb) for rgb in frame))
-        self.assertLessEqual(max(max(rgb) for rgb in frame), 4)
+        self.assertLessEqual(max(max(rgb) for rgb in frame), 30)
 
     def test_positive_recovery_cancels_sputter_and_clears_queued_effects(self):
         reducer = AccountingReducer(PROVISION)

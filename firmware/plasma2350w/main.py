@@ -96,11 +96,11 @@ def load_config(path="config.json"):
         if not isinstance(value, str) or not value or len(value) > 128 \
                 or any(ord(char) < 32 for char in value):
             raise ValueError("invalid " + name)
-    if config.get("color_order", "GRB") not in ("RGB", "RBG", "GRB", "GBR",
+    if config.get("color_order", "RGB") not in ("RGB", "RBG", "GRB", "GBR",
                                                 "BRG", "BGR"):
         raise ValueError("unsupported color_order")
     for name, default, low, high in (
-        ("max_brightness", .1, 0, 1),
+        ("max_brightness", 1.0, 0, 1),
         ("max_led_milliamps", 1500, 48, 100000),
         ("idle_ma_per_pixel", .5, 0, 100),
         ("channel_ma", 20, 0.001, 1000),
@@ -124,7 +124,24 @@ def load_config(path="config.json"):
     return config
 
 
-def build(config):
+def build_controller(config, provision):
+    limiter = PowerLimiter(
+        pixels=96,
+        max_brightness=config.get("max_brightness", 1.0),
+        max_milliamps=config.get("max_led_milliamps", 1500),
+        idle_ma_per_pixel=config.get("idle_ma_per_pixel", 0.5),
+        channel_ma=config.get("channel_ma", 20.0),
+    )
+    return DisplayController(
+        AccountingReducer(provision, config.get("stale_after_seconds", 900)),
+        CandleRenderer(96, config.get("flicker_seed", 2350)),
+        limiter,
+    )
+
+
+def build(config, env=None):
+    if env is None:
+        env = load_environment(config.get("environment_file", ".env"))
     import network
     wlan = network.WLAN(network.STA_IF)
     provision = {
@@ -136,25 +153,39 @@ def build(config):
             config.get("exhaustion_policy") == "configured-budget",
         "allow_unlimited": config["source"].get("unlimited", False),
     }
-    limiter = PowerLimiter(
-        pixels=96,
-        max_brightness=config.get("max_brightness", 0.10),
-        max_milliamps=config.get("max_led_milliamps", 1500),
-        idle_ma_per_pixel=config.get("idle_ma_per_pixel", 0.5),
-        channel_ma=config.get("channel_ma", 20.0),
-    )
-    controller = DisplayController(
-        AccountingReducer(provision, config.get("stale_after_seconds", 900)),
-        CandleRenderer(96, config.get("flicker_seed", 2350)),
-        limiter,
-    )
-    env = load_environment(config.get("environment_file", ".env"))
+    controller = build_controller(config, provision)
     transport = DirectGitHubClient(
         config, env["GITHUB_TOKEN"], Clock(), set_board_utc, wlan,
         env["WIFI_SSID"], env["WIFI_PASSWORD"])
-    return Scheduler(Clock(), PlasmaHardware(96, config.get("color_order", "GRB")),
+    return Scheduler(Clock(), PlasmaHardware(96, config.get("color_order", "RGB")),
                      transport, controller, startup_demo_timeout_seconds=
                      config.get("startup_demo_timeout_seconds", 30))
+
+
+def build_setup_demo(reason, config=None):
+    # Never use partially validated electrical settings or synthetic accounting.
+    config = {} if config is None else config
+    controller = build_controller(config, {})
+    controller.reducer.record_error(reason)
+    scheduler = Scheduler(
+        Clock(), PlasmaHardware(96, config.get("color_order", "RGB")),
+        None, controller)
+    print("Setup required: " + reason + "; edit config.json and .env on the board")
+    scheduler.start_demo("setup required", 0)
+    return scheduler
+
+
+def build_startup():
+    try:
+        config = load_config()
+    except (OSError, ValueError):
+        return build_setup_demo("config.json missing, unreadable or invalid")
+    try:
+        env = load_environment(config.get("environment_file", ".env"))
+    except ValueError:
+        return build_setup_demo(".env missing, unreadable or invalid", config)
+    # Hardware, code and TLS time-floor failures must not become setup demos.
+    return build(config, env)
 
 
 def set_board_utc(epoch):
@@ -171,7 +202,7 @@ def set_board_utc(epoch):
 def run():
     scheduler = None
     try:
-        scheduler = build(load_config())
+        scheduler = build_startup()
         while True:
             scheduler.tick()
             sleeper = getattr(time, "sleep_ms", None)

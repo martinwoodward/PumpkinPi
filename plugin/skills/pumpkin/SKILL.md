@@ -25,11 +25,18 @@ print `.env`, or collect a flash dump.
    outbound DNS/NTP/HTTPS, RTC, CA bundle and response bounds. Never weaken
    certificate checks or guess billing units to make an error disappear.
 5. Explain that button A starts a latched animation demo, marked by blue status.
+   It runs three full 63-second cycles, holds an orange/golden candle for 60
+   minutes, then repeats one full cycle followed by another 60-minute hold.
    Startup also falls back to demo after 30 seconds without fresh valid data.
+   Missing/invalid configuration or environment enters setup demo immediately
+   with a secret-free error and no network provider. Blank templates are only
+   for an explicitly approved unprovisioned board; never overwrite credentials.
    Inspect the error and `startup_demo_timeout_seconds`, then reset/power-cycle
    to retry normal mode. Full/demo sparkles do not prove remaining credits.
 6. Point the owner to `docs/plasma-runtime.md` for accounting and diagnostics, and
    the firmware README for upload, token rotation and exact demo timings.
+   `.github/copilot-instructions.md` contains Windows serial REPL commands and
+   the physical-board smoke-test procedure.
 
 Confirmed configured-budget zero ends in a dull flicker, not black. Recovery rises
 to white over one second, then returns to the candle. Sparkles at unlimited credits

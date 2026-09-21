@@ -6,7 +6,7 @@ class PowerConfigError(ValueError):
 
 
 class PowerLimiter:
-    def __init__(self, pixels=96, max_brightness=0.10, max_milliamps=1500,
+    def __init__(self, pixels=96, max_brightness=1.0, max_milliamps=1500,
                  idle_ma_per_pixel=0.5, channel_ma=20.0):
         if pixels <= 0 or not 0 < max_brightness <= 1:
             raise PowerConfigError("invalid pixel count or brightness")
