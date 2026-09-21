@@ -1,6 +1,17 @@
 # PumpkinPi
 Spooky build status indicator.
 
+## Plasma 2350 W version
+
+The new [Plasma 2350 W models](stl/plasma-2350-w/) include a board holder, a
+pumpkin body with a smoothed Octocat and a USB-C panel-mount fit coupon,
+with before/after previews.
+See the [Plasma runtime guide](docs/plasma-runtime.md) for the offline-tested
+96-LED MicroPython firmware and standalone GitHub HTTPS with a board-local token.
+See the [implementation plan](docs/plasma-copilot-plan.md) for its accounting and safety
+contract. Live billing and physical hardware gates remain intentionally unclaimed;
+the Raspberry Pi setup below remains the unchanged legacy application.
+
 <img src="images/pumpkinpi-title.png" alt="Pumpkin Pi" width="640" border="0" />
 
 ## Hardware Requirements:
@@ -68,7 +79,3 @@ Once you are happy everything is running how you want, don't forget you can run 
 Note that we are pausing for 10 seconds before running the python script. This is to allow the network to come up. We could make the python script more resilient to network outages and/or start up the script using [systemd](https://www.raspberrypi.org/documentation/linux/usage/systemd.md).
 
 <img src="images/pumpkin-orange.gif" alt="Pumpkin Pi" width="640" border="0" />
-
-
-
-

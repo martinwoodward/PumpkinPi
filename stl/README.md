@@ -1,5 +1,9 @@
 ## 3D model files for Pumpkin Pi
 
+For the **Plasma 2350 W**, see the [new model variants](plasma-2350-w/):
+a replacement holder, a body with a smoothed Octocat, USB-C panel-mount revisions and preview
+images. The original Pi Zero files below are retained unchanged.
+
 There are 3 main components for the Pumpkin Pi.
  - [pumpkin-body.stl](pumpkin-body.stl) - the main body of the pumpkin. I printed without supports using glow in the dark PLA filament. Infil 15% gyroid pattern.
  - [pumpkin-pi-holder.stl](pumpkin-pi-holder.stl) - an insert that snap fits into the bottom of the pumpkin. I printed mine in the same run as the body with same settings.

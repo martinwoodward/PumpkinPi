@@ -84,6 +84,8 @@ celerybeat-schedule
 # Environments
 .env
 .venv
+.verify-venv/
+.verify-home/
 env/
 venv/
 ENV/
@@ -108,3 +110,12 @@ venv.bak/
 
 # Mac
 .DS_Store
+
+# PumpkinPi Plasma runtime secrets and generated state
+firmware/plasma2350w/config.json
+firmware/plasma2350w/.env
+firmware/plasma2350w/.env.local
+firmware/plasma2350w/.env.backup
+firmware/plasma2350w/direct-time.json
+firmware/plasma2350w/direct-time.json.tmp
+**/captured-billing*
